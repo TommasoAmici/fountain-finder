@@ -42,7 +42,9 @@ navigator.geolocation.getCurrentPosition(async position => {
     fountains.forEach(fountain => {
       const el = document.createElement("div");
       el.innerHTML = markerSVG;
-      new Marker(el).setLngLat([fountain.lon, fountain.lat]).addTo(map);
+      new Marker({ element: el, anchor: "bottom" })
+        .setLngLat([fountain.lon, fountain.lat])
+        .addTo(map);
     });
   };
 
