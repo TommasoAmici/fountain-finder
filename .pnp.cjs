@@ -33,12 +33,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@cloudflare/workers-types", "npm:3.4.0"],\
             ["maplibre-gl", "npm:2.1.7"],\
             ["prettier", "npm:2.6.0"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"],\
             ["vite", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:2.8.6"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@cloudflare/workers-types", [\
+        ["npm:3.4.0", {\
+          "packageLocation": "./.yarn/cache/@cloudflare-workers-types-npm-3.4.0-44c2f32d8d-03294ec6ce.zip/node_modules/@cloudflare/workers-types/",\
+          "packageDependencies": [\
+            ["@cloudflare/workers-types", "npm:3.4.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@gar/promisify", [\
@@ -629,6 +639,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["fountain-finder", "workspace:."],\
+            ["@cloudflare/workers-types", "npm:3.4.0"],\
             ["maplibre-gl", "npm:2.1.7"],\
             ["prettier", "npm:2.6.0"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"],\

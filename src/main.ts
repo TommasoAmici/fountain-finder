@@ -1,7 +1,6 @@
-import { GeolocateControl, Map as MMap, Marker } from "maplibre-gl";
+import { GeolocateControl, LngLatLike, Map as MMap, Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import markerSVG from "./marker.svg?raw";
-import { findFountains } from "./osm";
 import "./style.css";
 
 const options = {
@@ -11,8 +10,8 @@ const options = {
   }`,
 };
 
-const uniqueInArray = (arr: any[]) => [
-  ...new Map(arr.map(item => [item["id"], item])).values(),
+const uniqueInArray = (arr: LngLatLike[]) => [
+  ...new Map(arr.map(item => [item.toString(), item])).values(),
 ];
 
 navigator.geolocation.getCurrentPosition(async position => {
@@ -33,18 +32,20 @@ navigator.geolocation.getCurrentPosition(async position => {
   });
   map.addControl(geolocate);
 
-  let fountains: Fountain[] = [];
+  let fountains: LngLatLike[] = [];
   // Find fountains and add them to the map
   const addMarkers = async () => {
     const bounds = map.getBounds();
-    const newFountains = await findFountains(bounds);
+    const lng = Math.min(bounds._ne.lng, bounds._sw.lng);
+    const lat = Math.min(bounds._ne.lat, bounds._sw.lat);
+    const res = await fetch(`/api/fountains/${lng}/${lat}`);
+    const newFountains: LngLatLike[] = await res.json();
+
     fountains = uniqueInArray([...fountains, ...newFountains]);
     fountains.forEach(fountain => {
       const el = document.createElement("div");
       el.innerHTML = markerSVG;
-      new Marker({ element: el, anchor: "bottom" })
-        .setLngLat([fountain.lon, fountain.lat])
-        .addTo(map);
+      new Marker({ element: el, anchor: "bottom" }).setLngLat(fountain).addTo(map);
     });
   };
 

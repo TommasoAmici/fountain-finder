@@ -5,6 +5,13 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@cloudflare/workers-types@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@cloudflare/workers-types@npm:3.4.0"
+  checksum: 03294ec6ce0494dc0e8a07fa9c2eb1edee674538d8bbf2bf21bbb4e05b23759e8d12bab6e938f558f0ea8d258b9f348145131b2a33816a6a62429f69bb927070
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -528,6 +535,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "fountain-finder@workspace:."
   dependencies:
+    "@cloudflare/workers-types": ^3.4.0
     maplibre-gl: ^2.1.7
     prettier: ^2.6.0
     typescript: ^4.5.4
