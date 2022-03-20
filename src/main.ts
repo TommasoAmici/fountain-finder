@@ -23,9 +23,7 @@ navigator.geolocation.getCurrentPosition(async position => {
     },
     trackUserLocation: true,
   });
-  if (window.location.hash === "") {
-    map.addControl(geolocate);
-  }
+  map.addControl(geolocate);
 
   const markers = new Map<number, Marker>();
 
