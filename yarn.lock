@@ -528,10 +528,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "fountain-finder@workspace:."
   dependencies:
-    maplibre-gl: ^2.1.7
-    prettier: ^2.6.0
-    typescript: ^4.5.4
-    vite: ^2.8.0
+    maplibre-gl: 2.1.7
+    prettier: 2.6.0
+    typescript: 4.6.2
+    vite: 2.8.6
   languageName: unknown
   linkType: soft
 
@@ -826,7 +826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"maplibre-gl@npm:^2.1.7":
+"maplibre-gl@npm:2.1.7":
   version: 2.1.7
   resolution: "maplibre-gl@npm:2.1.7"
   dependencies:
@@ -1097,7 +1097,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.6.0":
+"prettier@npm:2.6.0":
   version: 2.6.0
   resolution: "prettier@npm:2.6.0"
   bin:
@@ -1364,7 +1364,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.5.4":
+"typescript@npm:4.6.2":
   version: 4.6.2
   resolution: "typescript@npm:4.6.2"
   bin:
@@ -1374,7 +1374,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.6.2#~builtin<compat/typescript>":
   version: 4.6.2
   resolution: "typescript@patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"
   bin:
@@ -1409,7 +1409,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^2.8.0":
+"vite@npm:2.8.6":
   version: 2.8.6
   resolution: "vite@npm:2.8.6"
   dependencies:
