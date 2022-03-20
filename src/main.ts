@@ -1,4 +1,4 @@
-import { GeolocateControl, LngLatLike, Map as MMap, Marker } from "maplibre-gl";
+import { GeolocateControl, LngLat, LngLatLike, Map as MMap, Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import markerSVG from "./marker.svg?raw";
 import "./style.css";
@@ -26,10 +26,28 @@ navigator.geolocation.getCurrentPosition(async position => {
   map.addControl(geolocate);
 
   const markers = new Map<number, Marker>();
+  let prevPosition: LngLat | null = null;
 
   // Find fountains and add them to the map
   const addMarkers = async () => {
     const bounds = map.getBounds();
+
+    // if the current position is not too far from the previous
+    // position we can return early
+    if (prevPosition !== null && bounds.contains(prevPosition)) {
+      console.debug("prev position in bounds");
+      return;
+    }
+
+    // extend bounds to have some buffer zone all around
+    const startLat = Math.min(bounds._ne.lat, bounds._sw.lat);
+    const endLat = Math.max(bounds._ne.lat, bounds._sw.lat);
+    const startLng = Math.min(bounds._ne.lng, bounds._sw.lng);
+    const endLng = Math.max(bounds._ne.lng, bounds._sw.lng);
+    const extendBy = 0.1;
+    bounds.extend([startLng - extendBy, startLat - extendBy]);
+    bounds.extend([endLng + extendBy, endLat + extendBy]);
+
     // remove markers off screen
     markers.forEach((m, k) => {
       if (!bounds.contains(m.getLngLat())) {
@@ -37,11 +55,6 @@ navigator.geolocation.getCurrentPosition(async position => {
         markers.delete(k);
       }
     });
-
-    const startLat = Math.min(bounds._ne.lat, bounds._sw.lat);
-    const endLat = Math.max(bounds._ne.lat, bounds._sw.lat);
-    const startLng = Math.min(bounds._ne.lng, bounds._sw.lng);
-    const endLng = Math.max(bounds._ne.lng, bounds._sw.lng);
 
     const res = await fetch(`/api/${startLng}/${startLat}/${endLng}/${endLat}`);
     const fountains: OverpassResponse = await res.json();
@@ -57,13 +70,14 @@ navigator.geolocation.getCurrentPosition(async position => {
         markers.set(fountain.id, marker);
       }
     });
+    prevPosition = map.getCenter();
   };
 
-  map.on("load", function () {
+  map.on("load", () => {
     geolocate.trigger();
     addMarkers();
   });
-  map.on("moveend", function () {
+  map.on("moveend", () => {
     addMarkers();
   });
 });
