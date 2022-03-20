@@ -52,7 +52,7 @@ func newApp() *iris.Application {
 	app.UseGlobal(logger.New(), recover.New())
 
 	app.Get("/api/health", healthCheck)
-	app.Get("/api/{startLng}/{startLat}/{endLng}/{endLat}", getHandler)
+	app.Get("/api/fountains/{startLng}/{startLat}/{endLng}/{endLat}", getHandler)
 
 	env := os.Getenv("ENV")
 	if env == "PRODUCTION" {
