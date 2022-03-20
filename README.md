@@ -1,3 +1,5 @@
+![Example of Amsterdam with fountains marked on the map](./.github/map.png)
+
 <p align="center">
   <a href="https://fountains.tommasoamici.com.com/#gh-light-mode-only" target="_blank">
     <img src="./.github/banner-light.svg" alt="Fountain finder" width="350" height="100">
