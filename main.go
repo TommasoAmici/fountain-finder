@@ -54,9 +54,12 @@ func newApp() *iris.Application {
 	app.Get("/api/health", healthCheck)
 	app.Get("/api/{startLng}/{startLat}/{endLng}/{endLat}", getHandler)
 
-	fsys := iris.PrefixDir("dist", http.FS(embedWeb))
-	app.RegisterView(iris.HTML(fsys, ".html"))
-	app.HandleDir("/", fsys)
+	env := os.Getenv("ENV")
+	if env == "PRODUCTION" {
+		fsys := iris.PrefixDir("dist", http.FS(embedWeb))
+		app.RegisterView(iris.HTML(fsys, ".html"))
+		app.HandleDir("/", fsys)
+	}
 
 	return app
 }
