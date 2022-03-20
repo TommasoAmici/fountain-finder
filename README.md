@@ -12,6 +12,12 @@ you can find water fountains near you.
 
 Powered by OpenStreetMap.
 
+## Roadmap
+
+- [ ] Add search bar to navigate to different places in the world
+- [ ] Allow users to add missing fountains to OSM
+- [ ] Allow users to report fountains that are not there anymore to OSM
+
 ## Contributing
 
 The application requires Redis, Go, and Node.js to be built.
