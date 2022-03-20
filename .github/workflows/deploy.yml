@@ -29,8 +29,19 @@ jobs:
         with:
           switches: -avzr --delete
           path: fountain-finder
-          remote_path: /apps/fountain-finder
+          remote_path: /apps/fountain-finder/
           remote_host: ${{ secrets.HOST }}
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USER }}
           remote_key: ${{ secrets.KEY }}
+
+      - name: Restart service
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            sudo /usr/bin/systemctl restart fountain-finder.service
+
