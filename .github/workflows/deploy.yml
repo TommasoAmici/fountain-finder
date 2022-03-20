@@ -16,6 +16,8 @@ jobs:
           node-version: 16
       - run: yarn install --immutable --immutable-cache
       - run: yarn build
+        env:
+          VITE_MAP_STYLE_KEY: ${{ secrets.VITE_MAP_STYLE_KEY }}
 
       - name: Set up Go
         uses: actions/setup-go@v3
