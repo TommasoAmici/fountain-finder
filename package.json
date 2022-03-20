@@ -15,5 +15,12 @@
   "dependencies": {
     "maplibre-gl": "^2.1.7"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.0",
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ]
 }
