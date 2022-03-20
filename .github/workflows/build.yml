@@ -1,22 +1,68 @@
-name: CI/CD
+name: Build
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Build
+  changes:
+    runs-on: ubuntu-latest
+    # Set job outputs to values from filter step
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'main.go'
+              - 'go.mod'
+              - 'go.sum'
+            frontend:
+              - 'src/**'
+              - 'package.json'
+              - 'yarn.lock'
+
+  build-go:
+    name: Build Go
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 16
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "^1.18"
+
+      - name: Build go
+        run: go build main.go
+
+  build-node:
+    name: Build Node
+    needs: changes
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.x
 
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn build
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Yarn dependencies
+        run: yarn install --immutable --immutable-cache
+
+      - name: Build frontend
+        run: yarn build
