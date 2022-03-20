@@ -1,23 +1,15 @@
-import { GeolocateControl, Map as MMap, Marker } from "maplibre-gl";
+import { GeolocateControl, LngLatLike, Map as MMap, Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import markerSVG from "./marker.svg?raw";
-import { findFountains } from "./osm";
 import "./style.css";
-
-const options = {
-  container: "map",
-  style: `https://api.maptiler.com/maps/streets/style.json?key=${
-    import.meta.env.VITE_MAP_STYLE_KEY
-  }`,
-};
-
-const uniqueInArray = (arr: any[]) => [
-  ...new Map(arr.map(item => [item["id"], item])).values(),
-];
 
 navigator.geolocation.getCurrentPosition(async position => {
   const map = new MMap({
-    ...options,
+    container: "map",
+    style: `https://api.maptiler.com/maps/streets/style.json?key=${
+      import.meta.env.VITE_MAP_STYLE_KEY
+    }`,
+    hash: true,
     center: [position.coords.longitude, position.coords.latitude],
     zoom: 16,
   });
@@ -31,20 +23,41 @@ navigator.geolocation.getCurrentPosition(async position => {
     },
     trackUserLocation: true,
   });
-  map.addControl(geolocate);
+  if (window.location.hash === "") {
+    map.addControl(geolocate);
+  }
 
-  let fountains: Fountain[] = [];
+  const markers = new Map<number, Marker>();
+
   // Find fountains and add them to the map
   const addMarkers = async () => {
     const bounds = map.getBounds();
-    const newFountains = await findFountains(bounds);
-    fountains = uniqueInArray([...fountains, ...newFountains]);
-    fountains.forEach(fountain => {
-      const el = document.createElement("div");
-      el.innerHTML = markerSVG;
-      new Marker({ element: el, anchor: "bottom" })
-        .setLngLat([fountain.lon, fountain.lat])
-        .addTo(map);
+    // remove markers off screen
+    markers.forEach((m, k) => {
+      if (!bounds.contains(m.getLngLat())) {
+        m.remove();
+        markers.delete(k);
+      }
+    });
+
+    const startLat = Math.min(bounds._ne.lat, bounds._sw.lat);
+    const endLat = Math.max(bounds._ne.lat, bounds._sw.lat);
+    const startLng = Math.min(bounds._ne.lng, bounds._sw.lng);
+    const endLng = Math.max(bounds._ne.lng, bounds._sw.lng);
+
+    const res = await fetch(`/api/${startLng}/${startLat}/${endLng}/${endLat}`);
+    const fountains: OverpassResponse = await res.json();
+
+    fountains.elements.forEach(fountain => {
+      const lngLat: LngLatLike = [fountain.lon, fountain.lat];
+      if (markers.get(fountain.id) === undefined && bounds.contains(lngLat)) {
+        const el = document.createElement("div");
+        el.innerHTML = markerSVG;
+        const marker = new Marker({ element: el, anchor: "bottom" })
+          .setLngLat(lngLat)
+          .addTo(map);
+        markers.set(fountain.id, marker);
+      }
     });
   };
 
