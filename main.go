@@ -110,7 +110,7 @@ func getHandler(ctx iris.Context) {
 	var result map[string]interface{}
 	rdbCache.Get(ctx.Request().Context(), cacheKey, &result)
 	if result != nil {
-		ctx.Header("Cache-Control", "public, max-age=3600")
+		ctx.Header("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400")
 		ctx.JSON(result)
 		return
 	}
@@ -124,7 +124,7 @@ func getHandler(ctx iris.Context) {
 			Ctx:   ctx.Request().Context(),
 			Key:   cacheKey,
 			Value: result,
-			TTL:   time.Hour,
+			TTL:   24 * time.Hour,
 		})
 	}()
 
@@ -136,6 +136,6 @@ func getHandler(ctx iris.Context) {
 		return
 	}
 
-	ctx.Header("Cache-Control", "public, max-age=3600")
+	ctx.Header("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400")
 	ctx.JSON(result)
 }
