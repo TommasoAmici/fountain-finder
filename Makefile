@@ -1,7 +1,7 @@
 BUILD = fountain-finder
 
 run:
-	air
+	@type air > /dev/null 2>&1 && air || go run main.go
 
 build:
 	go build -o ${BUILD} main.go
