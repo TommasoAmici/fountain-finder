@@ -35,7 +35,6 @@ navigator.geolocation.getCurrentPosition(async position => {
     // if the current position is not too far from the previous
     // position we can return early
     if (prevPosition !== null && bounds.contains(prevPosition)) {
-      console.debug("prev position in bounds");
       return;
     }
 
