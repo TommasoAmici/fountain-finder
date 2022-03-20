@@ -1,9 +1,9 @@
-<p>
+<p align="center">
   <a href="https://fountains.tommasoamici.com.com/#gh-light-mode-only" target="_blank">
-    <img src="./.github/banner-light.svg" alt="Fountain finder" width="350" height="70">
+    <img src="./.github/banner-light.svg" alt="Fountain finder" width="350" height="100">
   </a>
   <a href="https://fountains.tommasoamici.com.com/#gh-dark-mode-only" target="_blank">
-    <img src="./.github/banner-dark.svg" alt="Fountain finder" width="350" height="70">
+    <img src="./.github/banner-dark.svg" alt="Fountain finder" width="350" height="100">
   </a>
 </p>
 
