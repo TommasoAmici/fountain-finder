@@ -55,7 +55,12 @@ navigator.geolocation.getCurrentPosition(async position => {
       }
     });
 
-    const res = await fetch(`/api/${startLng}/${startLat}/${endLng}/${endLat}`);
+    const precision = 4;
+    const res = await fetch(
+      `/api/fountains/${startLng.toFixed(precision)}/${startLat.toFixed(
+        precision
+      )}/${endLng.toFixed(precision)}/${endLat.toFixed(precision)}`
+    );
     const fountains: OverpassResponse = await res.json();
 
     fountains.elements.forEach(fountain => {
