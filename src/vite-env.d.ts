@@ -28,4 +28,5 @@ interface OverpassResponse {
     copyright: string;
   };
   elements: Fountain[];
+  cache?: boolean;
 }
