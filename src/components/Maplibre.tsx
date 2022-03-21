@@ -79,6 +79,7 @@ const Maplibre: Component = () => {
         }`,
         hash: true,
         zoom: MAX_ZOOM,
+        pixelRatio: Math.min(window.devicePixelRatio, 2),
       })
         .addControl(geolocate)
         .on("load", () => {
