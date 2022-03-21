@@ -26,4 +26,4 @@ jobs:
           go-version: "^1.18"
 
       - name: Build go
-        run: go build main.go
+        run: make build
