@@ -72,6 +72,6 @@ func search(query string) {
 		Ctx:   context.Background(),
 		Key:   cacheKey,
 		Value: result,
-		TTL:   30 * 24 * time.Hour,
+		TTL:   60 * 24 * time.Hour,
 	})
 }
