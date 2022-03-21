@@ -2,14 +2,13 @@ package main
 
 import (
 	"embed"
-	"encoding/json"
 	"fmt"
 	"math"
 	"net/http"
-	"net/url"
 	"os"
 	"time"
 
+	"github.com/TommasoAmici/fountain-finder/pkg/osm"
 	"github.com/go-redis/cache/v8"
 	"github.com/go-redis/redis/v8"
 	"github.com/kataras/iris/v12"
@@ -68,39 +67,6 @@ func healthCheck(ctx iris.Context) {
 	ctx.StatusCode(iris.StatusOK)
 }
 
-type Element struct {
-	ID  int     `json:"id" msgpack:"id"`
-	Lat float64 `json:"lat" msgpack:"lat"`
-	Lng float64 `json:"lon" msgpack:"lon"`
-}
-
-type Response struct {
-	Elements []Element `json:"elements" msgpack:"elements"`
-}
-
-func fetchElements(startLng, startLat, endLng, endLat float64) (map[string]interface{}, error) {
-	baseURL := "https://overpass.kumi.systems/api/interpreter/?data="
-	bounds := fmt.Sprintf("(%f,%f,%f,%f)", startLat, startLng, endLat, endLng)
-	query := fmt.Sprintf(`[out:json][timeout:25];(node["amenity"="drinking_water"]%s;);out body;>;out skel qt;`, bounds)
-	u := baseURL + url.QueryEscape(query)
-	r, err := http.Get(u)
-	if err != nil {
-		return nil, err
-	}
-
-	data := Response{}
-	decoder := json.NewDecoder(r.Body)
-	err = decoder.Decode(&data)
-	if err != nil {
-		return nil, err
-	}
-	r.Body.Close()
-
-	result := map[string]interface{}{}
-	result["elements"] = data.Elements
-	return result, nil
-}
-
 func getHandler(ctx iris.Context) {
 	startLng := ctx.Params().GetFloat64Default("startLng", 0)
 	startLat := ctx.Params().GetFloat64Default("startLat", 0)
@@ -118,7 +84,7 @@ func getHandler(ctx iris.Context) {
 		return
 	}
 	go func() {
-		result, err := fetchElements(cacheLng, cacheLat, cacheLng+1, cacheLat+1)
+		result, err := osm.FetchElements(cacheLng, cacheLat, cacheLng+1, cacheLat+1)
 		if err != nil {
 			ctx.Application().Logger().Error("Failed to fetch JSON from Overpass API: ", cacheKey)
 			return
@@ -131,7 +97,7 @@ func getHandler(ctx iris.Context) {
 		})
 	}()
 
-	result, err := fetchElements(startLng, startLat, endLng, endLat)
+	result, err := osm.FetchElements(startLng, startLat, endLng, endLat)
 	if err != nil {
 		ctx.Application().Logger().Error("Failed to get elements from Overpass API")
 		prob := iris.NewProblem().Detail("Failed to get elements from Overpass API").Status(iris.StatusInternalServerError)
