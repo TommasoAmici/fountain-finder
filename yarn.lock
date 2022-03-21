@@ -642,7 +642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.4":
+"autoprefixer@npm:10.4.4":
   version: 10.4.4
   resolution: "autoprefixer@npm:10.4.4"
   dependencies:
@@ -1296,17 +1296,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "fountain-finder@workspace:."
   dependencies:
-    autoprefixer: ^10.4.4
+    autoprefixer: 10.4.4
     maplibre-gl: 2.1.7
-    postcss: ^8.4.12
+    postcss: 8.4.12
     prettier: 2.6.0
-    prettier-plugin-tailwindcss: ^0.1.8
-    solid-headless: ^0.10.12
-    solid-js: ^1.3.13
-    tailwindcss: ^3.0.23
+    prettier-plugin-tailwindcss: 0.1.8
+    solid-headless: 0.10.12
+    solid-js: 1.3.13
+    tailwindcss: 3.0.23
     typescript: 4.6.2
     vite: 2.8.6
-    vite-plugin-solid: ^2.2.6
+    vite-plugin-solid: 2.2.6
   languageName: unknown
   linkType: soft
 
@@ -2162,7 +2162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.12, postcss@npm:^8.4.6":
+"postcss@npm:8.4.12, postcss@npm:^8.4.6":
   version: 8.4.12
   resolution: "postcss@npm:8.4.12"
   dependencies:
@@ -2180,7 +2180,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-tailwindcss@npm:^0.1.8":
+"prettier-plugin-tailwindcss@npm:0.1.8":
   version: 0.1.8
   resolution: "prettier-plugin-tailwindcss@npm:0.1.8"
   peerDependencies:
@@ -2436,7 +2436,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solid-headless@npm:^0.10.12":
+"solid-headless@npm:0.10.12":
   version: 0.10.12
   resolution: "solid-headless@npm:0.10.12"
   dependencies:
@@ -2447,7 +2447,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solid-js@npm:^1.3.13, solid-js@npm:^1.3.3":
+"solid-js@npm:1.3.13, solid-js@npm:^1.3.3":
   version: 1.3.13
   resolution: "solid-js@npm:1.3.13"
   checksum: 474c5422ba11df8d92c1a0aa0bb14a4c17d0a934ad75ae49db3c2e68e2bda0920c188cee8912bb95ffe0fc61030d5f1fa6997a91419207eb447466cfb9898a3c
@@ -2562,7 +2562,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.23":
+"tailwindcss@npm:3.0.23":
   version: 3.0.23
   resolution: "tailwindcss@npm:3.0.23"
   dependencies:
@@ -2686,7 +2686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-solid@npm:^2.2.6":
+"vite-plugin-solid@npm:2.2.6":
   version: 2.2.6
   resolution: "vite-plugin-solid@npm:2.2.6"
   dependencies:
