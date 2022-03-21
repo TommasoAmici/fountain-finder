@@ -144,7 +144,7 @@ func searchHandler(ctx iris.Context) {
 	}
 	cooldown = true
 
-	result, err = osm.Geocode(query)
+	result, err = osm.Geocode(query, "fountain-finder")
 	if err != nil {
 		ctx.Application().Logger().Error("Failed to geocode ", query, err)
 		prob := iris.NewProblem().Detail("Failed to geocode query").Status(iris.StatusInternalServerError)

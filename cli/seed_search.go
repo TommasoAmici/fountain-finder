@@ -19,8 +19,16 @@ var rdbCache *cache.Cache
 // and store them in redis for a month.
 // Because there is a cooldown of 1s between each request it takes a total of 5 hours to run.
 // https://operations.osmfoundation.org/policies/nominatim/
+
+var redisAddress *string
+var userAgent *string
+
+func init() {
+	redisAddress = flag.String("redis", "127.0.0.1:6379", "redis address")
+	userAgent = flag.String("ua", "", "user agent for API requests")
+}
+
 func main() {
-	redisAddress := flag.String("redis", "127.0.0.1:6379", "redis address")
 	flag.Parse()
 
 	rdb = redis.NewClient(&redis.Options{
@@ -55,7 +63,7 @@ func search(query string) {
 
 	time.Sleep(1 * time.Second)
 
-	result, err = osm.Geocode(query)
+	result, err = osm.Geocode(query, *userAgent)
 	if err != nil {
 		return
 	}
