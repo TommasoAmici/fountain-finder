@@ -73,10 +73,10 @@ const Maplibre: Component = () => {
 
       const newMap = new MMap({
         container: mapContainer,
-        style: "https://demotiles.maplibre.org/style.json",
-        // style: `https://api.maptiler.com/maps/streets/style.json?key=${
-        //   import.meta.env.VITE_MAP_STYLE_KEY
-        // }`,
+        // style: "https://demotiles.maplibre.org/style.json",
+        style: `https://api.maptiler.com/maps/streets/style.json?key=${
+          import.meta.env.VITE_MAP_STYLE_KEY
+        }`,
         hash: true,
         zoom: MAX_ZOOM,
       })
