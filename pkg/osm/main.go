@@ -53,7 +53,7 @@ type GeoCodeResponse struct {
 func Geocode(query, userAgent string) ([]GeoCodeResponse, error) {
 	data := []GeoCodeResponse{}
 
-	baseURL := "https://nominatim.openstreetmap.org/search?format=json&limit=3&q="
+	baseURL := "https://nominatim.openstreetmap.org/search?format=json&limit=5&q="
 	u := baseURL + url.QueryEscape(query)
 
 	client := &http.Client{}
