@@ -6,6 +6,7 @@ import (
 	"math"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/TommasoAmici/fountain-finder/pkg/osm"
@@ -51,6 +52,7 @@ func newApp() *iris.Application {
 	app.UseGlobal(logger.New(), recover.New())
 
 	app.Get("/api/health", healthCheck)
+	app.Get("/api/search", searchHandler)
 	app.Get("/api/fountains/{startLng}/{startLat}/{endLng}/{endLat}", getHandler)
 
 	env := os.Getenv("ENV")
@@ -89,6 +91,7 @@ func getHandler(ctx iris.Context) {
 			ctx.Application().Logger().Error("Failed to fetch JSON from Overpass API: ", cacheKey)
 			return
 		}
+		result["cache"] = true
 		rdbCache.Set(&cache.Item{
 			Ctx:   ctx.Request().Context(),
 			Key:   cacheKey,
@@ -106,5 +109,56 @@ func getHandler(ctx iris.Context) {
 	}
 
 	ctx.Header("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400")
+	ctx.JSON(result)
+}
+
+var cooldown = false
+
+func searchHandler(ctx iris.Context) {
+	query := ctx.URLParam("query")
+	if query == "" {
+		prob := iris.NewProblem().Detail("Empty queries are not supported").Status(iris.StatusBadRequest)
+		ctx.Problem(prob)
+		return
+	}
+	maxLength := 15
+	if len(query) > maxLength {
+		query = query[:maxLength]
+	}
+	query = strings.ToLower(query)
+
+	cacheKey := fmt.Sprintf("osm:%s", query)
+	var result []osm.GeoCodeResponse
+	err := rdbCache.Get(ctx.Request().Context(), cacheKey, &result)
+	if err == nil {
+		ctx.Header("Cache-Control", "public, max-age=86400, stale-while-revalidate=86400")
+		ctx.JSON(result)
+		return
+	}
+
+	// wait 1s between API requests
+	// https://operations.osmfoundation.org/policies/nominatim/
+	if cooldown {
+		time.Sleep(1 * time.Second)
+		cooldown = false
+	}
+	cooldown = true
+
+	result, err = osm.Geocode(query)
+	if err != nil {
+		ctx.Application().Logger().Error("Failed to geocode ", query, err)
+		prob := iris.NewProblem().Detail("Failed to geocode query").Status(iris.StatusInternalServerError)
+		ctx.Problem(prob)
+		return
+	}
+
+	rdbCache.Set(&cache.Item{
+		Ctx:   ctx.Request().Context(),
+		Key:   cacheKey,
+		Value: result,
+		TTL:   24 * time.Hour,
+	})
+
+	ctx.Header("Cache-Control", "public, max-age=86400, stale-while-revalidate=86400")
 	ctx.JSON(result)
 }
