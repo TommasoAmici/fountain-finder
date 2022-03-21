@@ -50,7 +50,7 @@ type GeoCodeResponse struct {
 
 // Geocode performs a query against the OSM API, results should be cached to improve
 // the performance of autocompletion on the frontend
-func Geocode(query string) ([]GeoCodeResponse, error) {
+func Geocode(query, userAgent string) ([]GeoCodeResponse, error) {
 	data := []GeoCodeResponse{}
 
 	baseURL := "https://nominatim.openstreetmap.org/search?format=json&limit=3&q="
@@ -58,6 +58,7 @@ func Geocode(query string) ([]GeoCodeResponse, error) {
 
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", u, nil)
+	req.Header.Set("User-Agent", userAgent)
 	req.Header.Set("accept", "application/json")
 	res, err := client.Do(req)
 	if err != nil {
