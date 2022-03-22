@@ -72,5 +72,19 @@ func Geocode(query, userAgent string) ([]GeoCodeResponse, error) {
 	}
 	res.Body.Close()
 
-	return data, nil
+	return removeDuplicates(data), nil
+}
+
+func removeDuplicates(arr []GeoCodeResponse) (res []GeoCodeResponse) {
+	visited := map[string]bool{}
+	for i := len(arr) - 1; i >= 0; i-- {
+		n := arr[i].Name
+		if visited[n] {
+			continue
+		}
+
+		visited[n] = true
+		res = append([]GeoCodeResponse{arr[i]}, res...)
+	}
+	return res
 }
