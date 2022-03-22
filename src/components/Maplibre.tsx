@@ -11,7 +11,7 @@ import { Component, createSignal, onCleanup, onMount } from "solid-js";
 import markerSVG from "./marker.svg?raw";
 
 const MAX_ZOOM = 16;
-const MAX_MARKERS = 200;
+const MAX_MARKERS = 50;
 
 /**
  * Extends bounds to have a buffer zone all around
