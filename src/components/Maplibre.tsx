@@ -106,13 +106,6 @@ const Maplibre: Component = () => {
     const bounds = map.getBounds();
     addBufferZone(bounds);
 
-    // if the current position is not too far from the previous
-    // position we can return early
-    const prev = prevCenter();
-    if (prev !== null && bounds.contains(prev)) {
-      return;
-    }
-
     const fountains = await getFountainsInBounds(cacheHits, bounds);
     if (fountains.cache === true) {
       recordCacheHit(bounds);
