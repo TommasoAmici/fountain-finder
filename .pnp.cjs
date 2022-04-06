@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.6.2"],\
             ["prettier-plugin-tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.1.8"],\
             ["solid-headless", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.10.12"],\
-            ["solid-js", "npm:1.3.13"],\
+            ["solid-js", "npm:1.3.14"],\
             ["tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:3.0.23"],\
             ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"],\
             ["vite", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:2.9.1"],\
@@ -1732,7 +1732,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.6.2"],\
             ["prettier-plugin-tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.1.8"],\
             ["solid-headless", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.10.12"],\
-            ["solid-js", "npm:1.3.13"],\
+            ["solid-js", "npm:1.3.14"],\
             ["tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:3.0.23"],\
             ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"],\
             ["vite", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:2.9.1"],\
@@ -3061,7 +3061,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["solid-headless", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.10.12"],\
             ["@types/solid-js", null],\
-            ["solid-js", "npm:1.3.13"],\
+            ["solid-js", "npm:1.3.14"],\
             ["solid-use", "virtual:0283ad99582339cbc17b5df43e7a033f8270f39e4e980d0e9635e48c4fec82fd83badbee5f162ec08d4b74475ab718a8ffbcd072fa62afb696a90121b62ebce6#npm:0.3.3"]\
           ],\
           "packagePeers": [\
@@ -3076,6 +3076,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/solid-js-npm-1.3.13-34abe4b479-474c5422ba.zip/node_modules/solid-js/",\
           "packageDependencies": [\
             ["solid-js", "npm:1.3.13"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:1.3.14", {\
+          "packageLocation": "./.yarn/cache/solid-js-npm-1.3.14-16ac971ff7-876ff2b868.zip/node_modules/solid-js/",\
+          "packageDependencies": [\
+            ["solid-js", "npm:1.3.14"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3118,7 +3125,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["solid-use", "virtual:0283ad99582339cbc17b5df43e7a033f8270f39e4e980d0e9635e48c4fec82fd83badbee5f162ec08d4b74475ab718a8ffbcd072fa62afb696a90121b62ebce6#npm:0.3.3"],\
             ["@types/solid-js", null],\
-            ["solid-js", "npm:1.3.13"]\
+            ["solid-js", "npm:1.3.14"]\
           ],\
           "packagePeers": [\
             "@types/solid-js",\

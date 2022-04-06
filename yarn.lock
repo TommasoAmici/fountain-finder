@@ -1513,7 +1513,7 @@ __metadata:
     prettier: 2.6.2
     prettier-plugin-tailwindcss: 0.1.8
     solid-headless: 0.10.12
-    solid-js: 1.3.13
+    solid-js: 1.3.14
     tailwindcss: 3.0.23
     typescript: 4.6.3
     vite: 2.9.1
@@ -2658,7 +2658,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solid-js@npm:1.3.13, solid-js@npm:^1.3.3":
+"solid-js@npm:1.3.14":
+  version: 1.3.14
+  resolution: "solid-js@npm:1.3.14"
+  checksum: 876ff2b8686a0cb439915972e13ff5594bb8ff52da38c6cff4e533e5c050b1a6af11c22336de7d7e7cae39b6013fc61c0dd5f6dd466ddbf02b7dccb270fe881f
+  languageName: node
+  linkType: hard
+
+"solid-js@npm:^1.3.3":
   version: 1.3.13
   resolution: "solid-js@npm:1.3.13"
   checksum: 474c5422ba11df8d92c1a0aa0bb14a4c17d0a934ad75ae49db3c2e68e2bda0920c188cee8912bb95ffe0fc61030d5f1fa6997a91419207eb447466cfb9898a3c
