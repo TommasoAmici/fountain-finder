@@ -34,7 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["autoprefixer", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:10.4.4"],\
-            ["maplibre-gl", "npm:2.1.7"],\
+            ["maplibre-gl", "npm:2.1.8"],\
             ["postcss", "npm:8.4.12"],\
             ["prettier", "npm:2.6.2"],\
             ["prettier-plugin-tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.1.8"],\
@@ -679,6 +679,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-ad87447820.zip/node_modules/@tootallnate/once/",\
           "packageDependencies": [\
             ["@tootallnate/once", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/geojson", [\
+        ["npm:7946.0.8", {\
+          "packageLocation": "./.yarn/cache/@types-geojson-npm-7946.0.8-df9187edab-6049a39b02.zip/node_modules/@types/geojson/",\
+          "packageDependencies": [\
+            ["@types/geojson", "npm:7946.0.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1727,7 +1736,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["fountain-finder", "workspace:."],\
             ["autoprefixer", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:10.4.4"],\
-            ["maplibre-gl", "npm:2.1.7"],\
+            ["maplibre-gl", "npm:2.1.8"],\
             ["postcss", "npm:8.4.12"],\
             ["prettier", "npm:2.6.2"],\
             ["prettier-plugin-tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.1.8"],\
@@ -2264,10 +2273,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["maplibre-gl", [\
-        ["npm:2.1.7", {\
-          "packageLocation": "./.yarn/unplugged/maplibre-gl-npm-2.1.7-cfb4aaa2d4/node_modules/maplibre-gl/",\
+        ["npm:2.1.8", {\
+          "packageLocation": "./.yarn/unplugged/maplibre-gl-npm-2.1.8-2febe0c56e/node_modules/maplibre-gl/",\
           "packageDependencies": [\
-            ["maplibre-gl", "npm:2.1.7"],\
+            ["maplibre-gl", "npm:2.1.8"],\
             ["@mapbox/geojson-rewind", "npm:0.5.1"],\
             ["@mapbox/jsonlint-lines-primitives", "npm:2.0.2"],\
             ["@mapbox/mapbox-gl-supported", "npm:2.0.1"],\
@@ -2276,6 +2285,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mapbox/unitbezier", "npm:0.0.1"],\
             ["@mapbox/vector-tile", "npm:1.3.1"],\
             ["@mapbox/whoots-js", "npm:3.1.0"],\
+            ["@types/geojson", "npm:7946.0.8"],\
             ["csscolorparser", "npm:1.0.3"],\
             ["earcut", "npm:2.2.3"],\
             ["geojson-vt", "npm:3.2.1"],\
