@@ -34,7 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["autoprefixer", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:10.4.4"],\
-            ["maplibre-gl", "npm:2.1.8"],\
+            ["maplibre-gl", "npm:2.1.9"],\
             ["postcss", "npm:8.4.12"],\
             ["prettier", "npm:2.6.2"],\
             ["prettier-plugin-tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.1.8"],\
@@ -692,11 +692,41 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/mapbox__point-geometry", [\
+        ["npm:0.1.2", {\
+          "packageLocation": "./.yarn/cache/@types-mapbox__point-geometry-npm-0.1.2-b51b21d0cf-6e495e5d7e.zip/node_modules/@types/mapbox__point-geometry/",\
+          "packageDependencies": [\
+            ["@types/mapbox__point-geometry", "npm:0.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/mapbox__vector-tile", [\
+        ["npm:1.3.0", {\
+          "packageLocation": "./.yarn/cache/@types-mapbox__vector-tile-npm-1.3.0-4d9bee0b8f-42fbeba625.zip/node_modules/@types/mapbox__vector-tile/",\
+          "packageDependencies": [\
+            ["@types/mapbox__vector-tile", "npm:1.3.0"],\
+            ["@types/geojson", "npm:7946.0.8"],\
+            ["@types/mapbox__point-geometry", "npm:0.1.2"],\
+            ["@types/pbf", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/parse-json", [\
         ["npm:4.0.0", {\
           "packageLocation": "./.yarn/cache/@types-parse-json-npm-4.0.0-298522afa6-fd6bce2b67.zip/node_modules/@types/parse-json/",\
           "packageDependencies": [\
             ["@types/parse-json", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/pbf", [\
+        ["npm:3.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-pbf-npm-3.0.2-58600e2b60-f71ba1facd.zip/node_modules/@types/pbf/",\
+          "packageDependencies": [\
+            ["@types/pbf", "npm:3.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1736,7 +1766,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["fountain-finder", "workspace:."],\
             ["autoprefixer", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:10.4.4"],\
-            ["maplibre-gl", "npm:2.1.8"],\
+            ["maplibre-gl", "npm:2.1.9"],\
             ["postcss", "npm:8.4.12"],\
             ["prettier", "npm:2.6.2"],\
             ["prettier-plugin-tailwindcss", "virtual:58c2f54365bedc8b753f4aed4e9fc8b97f23aab7b8d648432d0bf7c0fbac3729876f1b52ffba5ff5162c2490323830c3c8302ba82d9563b747d4d1c7f28acef2#npm:0.1.8"],\
@@ -2273,10 +2303,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["maplibre-gl", [\
-        ["npm:2.1.8", {\
-          "packageLocation": "./.yarn/unplugged/maplibre-gl-npm-2.1.8-2febe0c56e/node_modules/maplibre-gl/",\
+        ["npm:2.1.9", {\
+          "packageLocation": "./.yarn/unplugged/maplibre-gl-npm-2.1.9-5f019a0db3/node_modules/maplibre-gl/",\
           "packageDependencies": [\
-            ["maplibre-gl", "npm:2.1.8"],\
+            ["maplibre-gl", "npm:2.1.9"],\
             ["@mapbox/geojson-rewind", "npm:0.5.1"],\
             ["@mapbox/jsonlint-lines-primitives", "npm:2.0.2"],\
             ["@mapbox/mapbox-gl-supported", "npm:2.0.1"],\
@@ -2286,6 +2316,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mapbox/vector-tile", "npm:1.3.1"],\
             ["@mapbox/whoots-js", "npm:3.1.0"],\
             ["@types/geojson", "npm:7946.0.8"],\
+            ["@types/mapbox__point-geometry", "npm:0.1.2"],\
+            ["@types/mapbox__vector-tile", "npm:1.3.0"],\
+            ["@types/pbf", "npm:3.0.2"],\
             ["csscolorparser", "npm:1.0.3"],\
             ["earcut", "npm:2.2.3"],\
             ["geojson-vt", "npm:3.2.1"],\
