@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "maplibre-gl": "2.1.9",
-    "solid-headless": "0.10.12",
+    "solid-headless": "0.11.0",
     "solid-js": "1.4.3"
   },
   "packageManager": "yarn@3.2.1",
