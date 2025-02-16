@@ -1,0 +1,10 @@
+fountains.tommasoamici.com {
+	reverse_proxy {
+		to localhost:8190
+	}
+
+	import log fountains.tommasoamici.com
+	import compression
+	import cache_control
+	import security
+}
