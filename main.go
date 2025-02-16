@@ -10,6 +10,8 @@ import (
 	"time"
 
 	"github.com/TommasoAmici/fountain-finder/pkg/osm"
+	"github.com/getsentry/sentry-go"
+	sentryiris "github.com/getsentry/sentry-go/iris"
 	"github.com/go-redis/cache/v8"
 	"github.com/go-redis/redis/v8"
 	"github.com/kataras/iris/v12"
@@ -20,11 +22,13 @@ import (
 var rdb *redis.Client
 var rdbCache *cache.Cache
 
+var GitCommit string
+
 //go:embed dist/*
 var embedWeb embed.FS
 
 func main() {
-	redisAddress, found := os.LookupEnv("ADDRESS")
+	redisAddress, found := os.LookupEnv("REDIS_ADDRESS")
 	if !found {
 		redisAddress = "127.0.0.1:6379"
 	}
@@ -38,12 +42,17 @@ func main() {
 		Redis: rdb,
 	})
 
-	app := newApp()
-	addr, found := os.LookupEnv("ADDRESS")
-	if !found {
-		addr = "127.0.0.1:8000"
+	if err := sentry.Init(sentry.ClientOptions{
+		Dsn:              os.Getenv("SENTRY_DSN"),
+		EnableTracing:    true,
+		TracesSampleRate: 1.0,
+	}); err != nil {
+		fmt.Printf("Sentry initialization failed: %v\n", err)
 	}
-	app.Listen(addr)
+
+	app := newApp()
+	app.Use(sentryiris.New(sentryiris.Options{}))
+	app.Listen("0.0.0.0:8000")
 }
 
 func newApp() *iris.Application {
