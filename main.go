@@ -52,7 +52,12 @@ func main() {
 
 	app := newApp()
 	app.Use(sentryiris.New(sentryiris.Options{}))
-	app.Listen("0.0.0.0:8000")
+	config := iris.WithConfiguration(iris.Configuration{
+		RemoteAddrHeaders: []string{
+			"cf-connecting-ip",
+		},
+	})
+	app.Listen("0.0.0.0:8000", config)
 }
 
 func newApp() *iris.Application {
