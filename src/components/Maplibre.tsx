@@ -1,6 +1,5 @@
 import {
   GeolocateControl,
-  LngLat,
   LngLatBounds,
   LngLatLike,
   Map as MMap,
@@ -58,7 +57,6 @@ const Maplibre: Component = () => {
   let mapContainer: HTMLDivElement | undefined = undefined;
 
   const [getMap, setMap] = createSignal<MMap>();
-  const [prevCenter, setPrevCenter] = createSignal<LngLat | null>(null);
 
   const markers = new Map<number, Marker>();
   const cacheHits = new Map<string, boolean>();
@@ -80,13 +78,14 @@ const Maplibre: Component = () => {
         hash: true,
         zoom: MAX_ZOOM,
         pixelRatio: Math.min(window.devicePixelRatio, 2),
-      })
-        .addControl(geolocate)
-        .on("load", () => {
-          geolocate.trigger();
-          addMarkers();
-        })
-        .on("moveend", addMarkers);
+      }).addControl(geolocate);
+
+      newMap.on("load", () => {
+        geolocate.trigger();
+        addMarkers();
+      });
+      newMap.on("moveend", addMarkers);
+
       setMap(newMap);
     }
   });
@@ -124,7 +123,6 @@ const Maplibre: Component = () => {
         }
       }
     });
-    setPrevCenter(map.getCenter());
   };
 
   return <div class="h-full w-full" ref={mapContainer} />;

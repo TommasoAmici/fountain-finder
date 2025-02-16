@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-brand: oklch(73.61% 0.1408 251.34);
+}
 
 html,
 body {
@@ -9,4 +11,3 @@ body {
   height: 100%;
   width: 100%;
 }
-
