@@ -2,6 +2,8 @@ FROM oven/bun:1.2.2 AS frontend-build
 WORKDIR /build
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --ignore-scripts --no-progress
+ARG VITE_MAP_STYLE_KEY
+ENV VITE_MAP_STYLE_KEY=$VITE_MAP_STYLE_KEY
 COPY . .
 RUN bun run build
 

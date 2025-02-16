@@ -33,6 +33,7 @@ jobs:
             ${{ secrets.DOCKER_REGISTRY }}/fountain-finder:${{ github.sha }}
           build-args: |
             GIT_SHA=${{ github.sha }}
+            VITE_MAP_STYLE_KEY=${{ secrets.VITE_MAP_STYLE_KEY }}"
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
