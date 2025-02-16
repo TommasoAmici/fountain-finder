@@ -3,11 +3,12 @@ name: CI/CD
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -34,5 +35,33 @@ jobs:
             GIT_SHA=${{ github.sha }}
 
       - name: Image digest
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: ["build"]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - name: rsync deployment scripts
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+          touch ~/.ssh/config
+          echo "Host mtt" >> ~/.ssh/config
+          echo "  HostName ${{ secrets.HOST }}" >> ~/.ssh/config
+          echo "  User ${{ secrets.USER }}" >> ~/.ssh/config
+          echo "  Port ${{ secrets.PORT }}" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
+          touch ~/.ssh/known_hosts
+          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          touch ~/.ssh/id_ed25519
+          echo "${{ secrets.key }}" >> ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          rsync -raz etc/ mtt:/home/tommi/apps/fountain-finder/
+
+          ssh mtt /home/tommi/apps/fountain-finder/restart.sh

@@ -1,0 +1,15 @@
+services:
+  app:
+    image: localhost:8210/fountain-finder
+    ports:
+      - "127.0.0.1:8190:8000"
+    depends_on:
+      redis:
+        condition: service_started
+    environment:
+      - REDIS_ADRESS=redis:6379
+    env_file: .env
+
+  redis:
+    image: redis:7-alpine
+    restart: always
